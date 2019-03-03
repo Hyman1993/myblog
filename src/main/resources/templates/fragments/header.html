@@ -53,13 +53,13 @@
 	th:href="@{/css/thymeleaf-bootstrap-paginator.css}" rel="stylesheet">
 <link href="../../css/blog.css" th:href="@{/css/blog.css}"
 	rel="stylesheet">
-<title>Web开发爬坑之旅</title>
+<title>[[${pageInfo.title}]]</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
 		<div class="container" style="position:static !important;">
             <div  style="float:left;left:0px;">
-			   <a class="navbar-brand ml-md-5 ml-0" href="/" th:href="@{/}">暴走的五花肉</a>
+			   <a class="navbar-brand ml-md-5 ml-0" href="/" th:href="@{/}">[[${pageInfo.home}]]</a>
 			</div>
             <button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarsContainer"
@@ -71,14 +71,14 @@
 
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link"
-						href="/blogs?order=new" th:attr="url='/blogs?order=new'">最新
+						href="/blogs?order=new" th:attr="url='/blogs?order=new'">[[${pageInfo.upToDate}]]
 							<span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/blogs?order=hot" th:attr="url='/blogs?order=hot'">最热</a>
+						href="/blogs?order=hot" th:attr="url='/blogs?order=hot'">[[${pageInfo.hot}]]</a>
 					</li>
 					<form class="form-inline mt-2 mt-md-0">
-						<input class="form-control mr-sm-2" type="text" placeholder="站内搜索"
+						<input class="form-control mr-sm-2" type="text" th:placeholder="${pageInfo.search}"
 							id="indexkeyword" th:value="${keyword}"> <a
 							href="javascript:void(0)"
 							class="btn btn-outline-secondary my-2 my-sm-0" id="indexsearch"><i
@@ -90,24 +90,24 @@
 				<div class="dropdown">
 					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="name"></span></a>
 					<div class="dropdown-menu" >
-						<a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">个人主页</a> 
-						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人设置</a>
+						<a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">[[${pageInfo.personalPage}]]</a> 
+						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >[[${pageInfo.personalSet}]]</a>
 					</div>
 				</div>
 				<div>
- 					<a href="/u/waylau/blogs/edit" th:href="'/u/' + ${#authentication.name} + '/blogs/edit'" class="btn btn-outline-success my-2 my-sm-0">写博客</a>
+ 					<a href="/u/waylau/blogs/edit" th:href="'/u/' + ${#authentication.name} + '/blogs/edit'" class="btn btn-outline-success my-2 my-sm-0">[[${pageInfo.writeBlogs}]]</a>
  				</div>
  				<div th:if="${#authentication.name} eq 'admin'">
- 					<a href="/admins" class="btn btn-outline-success my-2 my-sm-0">系统管理</a>
+ 					<a href="/admins" class="btn btn-outline-success my-2 my-sm-0">[[${pageInfo.systemManagement}]]</a>
  				</div>
 				<form action="/logout" th:action="@{/logout}" method="post">
-					<input class="btn btn-outline-success " type="submit" value="退出">
+					<input class="btn btn-outline-success " type="submit" th:value="${pageInfo.logout}">
 				</form>
             </div>
 
             <div sec:authorize="isAnonymous()">
-                <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</a>
-                <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</a>
+                <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">[[${pageInfo.login}]]</a>
+                <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">[[${pageInfo.register}]]</a>
             </div>
 		</div>
 

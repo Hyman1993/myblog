@@ -35,7 +35,7 @@ import com.penghuang.blog.vo.Response;
  */
 @Controller
 @RequestMapping("/comments")
-public class CommentController {
+public class CommentController  extends BaseController {
 
 	@Autowired
 	private BlogService blogService;

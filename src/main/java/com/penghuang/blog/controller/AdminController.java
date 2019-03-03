@@ -19,7 +19,7 @@ import com.penghuang.blog.vo.Menu;
  */
 @Controller
 @RequestMapping("/admins")
-public class AdminController {
+public class AdminController  extends BaseController {
 	/**
 	 * 获取后台管理主页
 	 * @param model

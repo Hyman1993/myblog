@@ -10,7 +10,7 @@
 	<!-- 处理页数小于等于7 的情况 -->
 	<ul class="pagination" data-th-if="${page.totalPages le 7}" >
 	 	<!-- 总记录数 -->
- 		<li class="tbpage-total-elements disabled">共[[${page.totalElements}]]条</li>
+ 		<li class="tbpage-total-elements disabled">[[${pageInfo.totalNums1}]][[${page.totalElements}]][[${pageInfo.totalNums2}]]</li>
  		
  		<!-- 页面大小 -->
 		<select class="custom-select tbpage-size" data-th-attr="pageIndex=${page.number}">
@@ -44,7 +44,7 @@
 	<!-- 处理页数大于7 的情况 -->	
 	<ul class="pagination" data-th-if="${page.totalPages gt 7}" >
 	 	<!-- 总记录数 -->
- 		<li class="tbpage-total-elements disabled">共[[${page.totalElements}]]条</li>
+ 		<li class="tbpage-total-elements disabled">[[${pageInfo.totalNums1}]][[${page.totalElements}]][[${pageInfo.totalNums2}]]</li>
  		
  		<!-- 页面大小 -->
 		<select class="custom-select tbpage-size" data-th-attr="pageIndex=${page.number}">

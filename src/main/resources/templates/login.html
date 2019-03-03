@@ -13,23 +13,23 @@
 				<p class="blog-label-error" th:text="${errorMsg}"></p>
 			</div>
 			
-			<h2 >请登录</h2>
+			<h2 >[[${pageInfo.loginPlease}]]</h2>
 			
 			<div class="form-group col-md-5">
-				<label for="username" class="col-form-label">账号</label>
-				<input type="text" class="form-control" id="username" name="username" maxlength="50" placeholder="请输入账号" required>
+				<label for="username" class="col-form-label">[[${pageInfo.account}]]</label>
+				<input type="text" class="form-control" id="username" name="username" maxlength="50" th:placeholder="${pageInfo.typeAccount}" required>
 	 
 			</div>
 			<div class="form-group col-md-5">
-				<label for="password" class="col-form-label">密码</label>
-				<input type="password" class="form-control" id="password" name="password" maxlength="30" placeholder="请输入密码" required>
+				<label for="password" class="col-form-label">[[${pageInfo.passwd}]]</label>
+				<input type="password" class="form-control" id="password" name="password" maxlength="30" th:placeholder="${pageInfo.typePasswd}" required>
 			</div>
 			<div class="form-group col-md-5">
-				 <input type="checkbox" name="remember-me"> 记住我
+				 <input type="checkbox" name="remember-me"> [[${pageInfo.rememberMe}]]
 			</div>
 			<div class="form-group col-md-5">
-				<button type="submit" class="btn btn-primary">登录</button>
-				<a href="/register" style="font-size:17px;color:#9da1a5;margin-left:15px;">注册</a>
+				<button type="submit" class="btn btn-primary">[[${pageInfo.login}]]</button>
+				<a href="/register" style="font-size:17px;color:#9da1a5;margin-left:15px;">[[${pageInfo.register}]]</a>
 			</div>
 
 		</form>

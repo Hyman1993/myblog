@@ -13,31 +13,31 @@
     <div class="container blog-content-container">
  
 		<form th:action="@{/register}"  method="post">
-			<h2 class="form-signin-heading">注册成为博主</h2>
+			<h2 class="form-signin-heading">[[${pageInfo.registerInfo}]]</h2>
 			
 			<div class="form-group col-md-5">
-				<label for="username" class="col-form-label">账号</label>
-				<input type="text" class="form-control" id="username" name="username" maxlength="20" pattern="^[a-zA-Z0-9]{3,20}$" title="至少3个字符,至多20个字符!" placeholder="请输入账号，至少3个字符，至多20个" required>
+				<label for="username" class="col-form-label">[[${pageInfo.account}]]</label>
+				<input type="text" class="form-control" id="username" name="username" maxlength="20" pattern="^[a-zA-Z0-9]{3,20}$" title="至少3个字符,至多20个字符!" th:placeholder="${pageInfo.typeAccount}" required>
 	 
 			</div>
 			<div class="form-group col-md-5">
-				<label for="email" class="col-form-label">邮箱</label>
-				<input type="email" class="form-control" id="email" name="email" maxlength="50" placeholder="请输入邮箱" required>
+				<label for="email" class="col-form-label">[[${pageInfo.email}]]</label>
+				<input type="email" class="form-control" id="email" name="email" maxlength="50" th:placeholder="${pageInfo.typeEmail}" required>
 			</div>
 			<div class="form-group col-md-5">
-				<label for="name" class="col-form-label">姓名</label>
-				<input type="text" class="form-control" id="name" name="name" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" required>
+				<label for="name" class="col-form-label">[[${pageInfo.name}]]</label>
+				<input type="text" class="form-control" id="name" name="name" maxlength="20" th:placeholder="${pageInfo.typeName}" required>
 			</div>
 			<div class="form-group col-md-5">
-				<label for="password" class="col-form-label">密码</label>
-				<input type="password" class="form-control" id="password" name="password" maxlength="30" pattern="^[a-zA-Z0-9]{1,30}$" title="至多30个字符!" placeholder="请输入密码，字母或特殊符号和数字结合" required>
+				<label for="password" class="col-form-label">[[${pageInfo.passwd}]]</label>
+				<input type="password" class="form-control" id="password" name="password" maxlength="30" pattern="^[a-zA-Z0-9]{1,30}$" title="至多30个字符!" th:placeholder="${pageInfo.typePasswd}" required>
 			</div>
 			<div class="form-group col-md-5">
-				<label for="invitationCode" class="col-form-label">邀请码</label>
-				<input type="text" class="form-control" id="invitationCode" name="invitationCode" maxlength="4" pattern="^[a-zA-Z0-9]{1,4}$" title="字母或数字结合!" placeholder="请输入邀请码，可向管理员申请" required>
+				<label for="invitationCode" class="col-form-label">[[${pageInfo.invitationCode}]]</label>
+				<input type="text" class="form-control" id="invitationCode" name="invitationCode" maxlength="4" pattern="^[a-zA-Z0-9]{1,4}$" title="字母或数字结合!" th:placeholder="${pageInfo.typeInvitationCode}" required>
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">提交</button>
+				<button type="submit" class="btn btn-primary">[[${pageInfo.submit}]]</button>
 			</div> 
 		</form>
     </div> <!-- /container -->

@@ -49,7 +49,7 @@ import com.penghuang.blog.vo.Response;
  */
 @Controller
 @RequestMapping("/u")
-public class UserspaceController {
+public class UserspaceController  extends BaseController {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	

@@ -29,7 +29,7 @@ import com.penghuang.blog.service.UserService;
  * @author <a href="https://penghuang1993.com">彭 煌</a>
  */
 @Controller
-public class MainController {
+public class MainController  extends BaseController {
 	
 	private static final Long ROLE_USER_AUTHORITY_ID = 2L;
 	

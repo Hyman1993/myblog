@@ -36,7 +36,7 @@ import com.penghuang.blog.vo.Response;
  */
 @Controller
 @RequestMapping("/catalogs")
-public class CatalogController {
+public class CatalogController  extends BaseController {
 	
 	@Autowired
 	private CatalogService catalogService;

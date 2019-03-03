@@ -27,7 +27,7 @@ import com.penghuang.blog.vo.TagVO;
  */
 @Controller
 @RequestMapping("/blogs")
-public class BlogController {
+public class BlogController extends BaseController {
 	
 	@Autowired
     private EsBlogService esBlogService;

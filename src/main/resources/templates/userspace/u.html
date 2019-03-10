@@ -31,19 +31,22 @@
 				<div class="row">
 
 					<div class="col-md-12">
-						<h2 class="card-text" th:text="${user.name}">彭煌</h2>
-						<h2 class="card-text">[[${pageInfo.personalInfo}]]</h2>
+						<h6 class="card-text" th:text="${user.name}">彭煌</h6>
+						<h6 class="card-text">[[${pageInfo.personalInfo}]]</h6>
 					</div>
 				</div>
 
 
 				<div class="row ">
 					<div class="col-md-12">
-						<h5>
+						<h6>
 							<i class="fa fa-envelope-o" aria-hidden="true"></i> <a
 								href="mailto:1392841128@qq.com"
 								th:href="'mailto:'+ ${user.email}" th:text="${user.email}">1392841128@qq.com</a>
-						</h5>
+						</h6>
+						<h6>
+							<i class="fa fa-envelope-o" aria-hidden="true"></i><a href="/mysource/経歴書_彭_20181101【最新】.pdf" download>個人履歴ダウンロード</a>   
+						</h6>
 					</div>
 				</div>
 

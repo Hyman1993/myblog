@@ -1,7 +1,5 @@
 package com.penghuang.blog.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -29,9 +27,6 @@ import com.penghuang.blog.repository.BlogRepository;
 @Service
 public class BlogServiceImpl implements BlogService {
 
-	// 用来存储游客的ip地址
-	List<String> ipList = new ArrayList<>();
-	
 	@Autowired
 	private BlogRepository blogRepository;
 	
@@ -173,15 +168,8 @@ public class BlogServiceImpl implements BlogService {
 			    user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 			}else{ // 若是未登录，游客身份的
 			   
-		        // 让游客用默认游客账户来点赞
-				 if(ipList.contains(ip)){
-					 // 同一个ip地址的游客只能点赞一次
-					 throw new IllegalArgumentException("谢谢,您已经点过赞了!");
-				 }else{
-					// 让游客用默认游客账户来点赞
-					user = userService.getUserById((long) 3);	
-					ipList.add(ip);
-				 }
+				// 让游客用默认游客账户来点赞
+			    user = userService.getUserById((long) 3);	
 			}
 			Vote vote = new Vote(user);
 			boolean isExist = originalBlog.addVote(vote);

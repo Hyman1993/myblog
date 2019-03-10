@@ -108,6 +108,10 @@
             <div sec:authorize="isAnonymous()">
                 <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">[[${pageInfo.login}]]</a>
                 <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">[[${pageInfo.register}]]</a>
+            <select class="selectpicker my-2 my-sm-0" name="lang" data-style="btn-danger" title="请选择语言" id="selectLanguage">
+                  <option value="zh" th:selected="${lang eq 'zh'}">汉语</option>
+                  <option value="ja" th:selected="${lang eq 'ja'}">日本語</option>
+            </select>
             </div>
 		</div>
 

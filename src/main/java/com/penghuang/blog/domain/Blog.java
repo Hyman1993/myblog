@@ -134,8 +134,13 @@ public class Blog implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
-		this.htmlContent = Processor.process(content); // 将Markdown 内容转为 HTML 格式.
+//		this.htmlContent = Processor.process(content); // 将Markdown 内容转为 HTML 格式.
 	}
+	
+	public void setHtmlContent(String htmlContent) {
+		this.htmlContent = htmlContent; 
+	}
+	
 	public User getUser() {
 		return user;
 	}

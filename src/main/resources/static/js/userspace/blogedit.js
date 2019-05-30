@@ -19,7 +19,8 @@ $(function() {
         resize:'vertical',
         localStorage:'md',
         imgurl: 'http://localhost:8081',
-        base64url: 'http://localhost:8081'
+        base64url: 'http://localhost:8081',
+        flowChart: true
     });
  
 
@@ -66,7 +67,8 @@ $(function() {
 		    data:JSON.stringify({"id":$('#blogId').val(), 
 		    	"title": $('#title').val(), 
 		    	"summary": $('#summary').val() , 
-		    	"content": $('#md').val(), 
+		    	"content": $('#md').val(),
+		    	"htmlContent": $('.md-preview').html(),
 		    	"catalog":{"id":$('#catalogSelect').val()},
 		    	"tags":$('.form-control-tag').val()
 		    	}),

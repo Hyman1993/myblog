@@ -304,6 +304,7 @@ public class UserspaceController  extends BaseController {
 				orignalBlog.setSummary(blog.getSummary());
 				orignalBlog.setCatalog(blog.getCatalog());
 				orignalBlog.setTags(blog.getTags());
+				orignalBlog.setHtmlContent(blog.getHtmlContent());
 				blogService.saveBlog(orignalBlog);
 			}else {
 		    User user = (User)userDetailsService.loadUserByUsername(username);

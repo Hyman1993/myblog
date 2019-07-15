@@ -1,8 +1,8 @@
 /*!
  * index main JS.
  * 
- * @since: 1.0.0 2017/4/12
- * @author Way Lau <https://waylau.com>
+ * @since: 1.0.0 2019.07.05
+ * @author peng huang 
  */
 "use strict";
 //# sourceURL=index.js

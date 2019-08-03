@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +36,9 @@ public class BlogServiceImpl implements BlogService {
 
 	@Autowired
 	private EsBlogService esBlogService;
+	
+	@Autowired
+	private JavaMailServiceImpl javaMailService;
 	
 	/**
 	 * 除了将blog存储到mysql数据库中，还需要将blog存储到elasticsearch中
@@ -118,9 +122,9 @@ public class BlogServiceImpl implements BlogService {
 	public Blog createComment(Long blogId, String commentContent,boolean isLogin) {
 		Optional<Blog> optionalBlog = blogRepository.findById(blogId);
 		Blog originalBlog = null;
+		User user = null;
 		if(optionalBlog.isPresent()) {
 			originalBlog = optionalBlog.get();
-			User user = null;
 			if(isLogin){
 			// 获取当前页面的用户
 			   user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
@@ -132,8 +136,13 @@ public class BlogServiceImpl implements BlogService {
 
 			Comment comment = new Comment(user, commentContent);
 			originalBlog.addComment(comment);
+		}else{
+			throw new IllegalArgumentException("该文章不存在或者已经被删除!");
 		}
 
+		// 当有人评论时，发送邮件通知作者(异步调用)
+		javaMailService.sendSimpleMail(user, originalBlog, "评论");
+		
 		return this.saveBlog(originalBlog);
 	}
 
@@ -159,10 +168,9 @@ public class BlogServiceImpl implements BlogService {
 	public Blog createVote(Long blogId,boolean isLogin,String ip) {
 		Optional<Blog> optionalBlog = blogRepository.findById(blogId);
 		Blog originalBlog = null;
- 
+		User user = null;
 		if (optionalBlog.isPresent()) {
 			originalBlog = optionalBlog.get();
-			User user = null;
 			// isLogin判断是否为登录状态,将游客user对象传进去
 			if(isLogin){
 			    user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
@@ -177,8 +185,12 @@ public class BlogServiceImpl implements BlogService {
 				// 还需要判断，若是同一个登录用户，或者同一个游客(根据点赞的时间)，不能连续点赞
 				throw new IllegalArgumentException("谢谢,您已经点过赞了!");
 			}
+		}else{
+			throw new IllegalArgumentException("该文章不存在或者已经被删除!");
 		}
 
+		// 当有人点赞时，发送邮件通知作者(异步调用)
+		javaMailService.sendSimpleMail(user, originalBlog, "点赞");	
 		return this.saveBlog(originalBlog);
 	}
 

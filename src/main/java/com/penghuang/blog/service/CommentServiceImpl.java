@@ -7,7 +7,7 @@ import com.penghuang.blog.domain.Comment;
 import com.penghuang.blog.repository.CommentRepository;
 
 /**
- * Comment Service接口实现类
+ * 评论Comment Service接口实现类
  * @author <a href="https://penghuang1993.com">彭 煌</a>
  *
  */

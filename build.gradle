@@ -34,7 +34,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
 
      //排除SpringBoot内置的tomcat
-     // providedCompile("org.springframework.boot:spring-boot-starter-tomcat")
+     providedCompile("org.springframework.boot:spring-boot-starter-tomcat")
 
 	// 该依赖对于编译发行是必须的
 	implementation('org.springframework.boot:spring-boot-starter-web')
@@ -55,7 +55,7 @@ dependencies {
 	implementation('es.nitaur.markdown:txtmark:0.16')
 
     // 添加MYSQL连接驱动的依赖
-        implementation('mysql:mysql-connector-java:6.0.5')
+    implementation('mysql:mysql-connector-java:6.0.5')
 
      // 添加H2的依赖
      //  runtime('com.h2database:h2:1.4.193')
@@ -67,4 +67,7 @@ dependencies {
 
      // 添加Apache Commons Lang 依赖
      implementation('org.apache.commons:commons-lang3:3.5')
+     
+     // 添加JavaMail依赖
+     implementation('org.springframework.boot:spring-boot-starter-mail')
 }

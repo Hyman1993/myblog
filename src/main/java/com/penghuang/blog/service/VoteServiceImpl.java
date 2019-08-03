@@ -9,7 +9,7 @@ import com.penghuang.blog.domain.Vote;
 import com.penghuang.blog.repository.VoteRepository;
 
 /**
- * Vote 服务实现.
+ * 点赞Vote 服务实现.
  * @since 1.0.0 2019年4月9日
  * @author <a href="https://penghuang1993.com">彭 煌</a>
  */

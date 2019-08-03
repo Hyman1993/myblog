@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.penghuang.blog.domain.User;
 import com.penghuang.blog.domain.Vote;
 import com.penghuang.blog.service.BlogService;
+import com.penghuang.blog.service.JavaMailServiceImpl;
 import com.penghuang.blog.service.VoteService;
 import com.penghuang.blog.util.ConstraintViolationExceptionHandler;
 import com.penghuang.blog.vo.Response;
@@ -37,7 +38,7 @@ public class VoteController extends BaseController {
 
 	@Autowired
 	private VoteService voteService;
-
+	
 	/**
 	 * 发表点赞
 	 * 
@@ -63,7 +64,7 @@ public class VoteController extends BaseController {
 
 		blogService.createVote(blogId, isLogin, ip);
 		Cookie cookie = new Cookie("voteIpAddress" + String.valueOf(blogId), ip);
-		// 设置cookie的生命周期为一周
+		// 设置cookie的生命周期为一周,即每周一篇文章只能点赞一次
 		cookie.setMaxAge(7 * 24 * 60 * 60);
 		response.addCookie(cookie);
 				

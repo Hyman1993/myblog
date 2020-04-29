@@ -52,16 +52,16 @@ dependencies {
      implementation('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
     
     // 添加 Markdown parser 依赖
-	implementation('es.nitaur.markdown:txtmark:0.16')
+	// implementation('es.nitaur.markdown:txtmark:0.16')
 
     // 添加MYSQL连接驱动的依赖
-    implementation('mysql:mysql-connector-java:6.0.5')
+    implementation('mysql:mysql-connector-java:8.0.11')
 
      // 添加H2的依赖
      //  runtime('com.h2database:h2:1.4.193')
 
      // 添加 Spring Data Elasticsearch 的依赖
-     implementation('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+     // implementation('org.springframework.boot:spring-boot-starter-data-elasticsearch')
      // 添加JNA的依赖
      implementation('net.java.dev.jna:jna:4.3.0')
 

@@ -21,8 +21,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.github.rjeschke.txtmark.Processor;
-
 /**
  * Blog 实体
  * 

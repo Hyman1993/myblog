@@ -1,13 +1,17 @@
 package com.penghuang.blog.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +20,8 @@ import com.penghuang.blog.domain.Catalog;
 import com.penghuang.blog.domain.Comment;
 import com.penghuang.blog.domain.User;
 import com.penghuang.blog.domain.Vote;
-import com.penghuang.blog.domain.es.EsBlog;
 import com.penghuang.blog.repository.BlogRepository;
+import com.penghuang.blog.vo.TagVO;
 
 /**
  * Blog 服务.
@@ -35,10 +39,10 @@ public class BlogServiceImpl implements BlogService {
 	private UserService userService;
 
 	@Autowired
-	private EsBlogService esBlogService;
-	
-	@Autowired
 	private JavaMailServiceImpl javaMailService;
+	
+	private static final Pageable TOP_5_PAGEABLE = PageRequest.of(0, 5);
+	private static final String EMPTY_KEYWORD = "";
 	
 	/**
 	 * 除了将blog存储到mysql数据库中，还需要将blog存储到elasticsearch中
@@ -46,19 +50,7 @@ public class BlogServiceImpl implements BlogService {
 	@Transactional
 	@Override
 	public Blog saveBlog(Blog blog) {
-	   boolean isNew = (blog.getId() == null);
-	   EsBlog esBlog = null;
-	
 	   Blog returnBlog = blogRepository.save(blog);
-	
-	   if (isNew) {
-		  esBlog = new EsBlog(returnBlog);
-	   } else {
-		  esBlog = esBlogService.getEsBlogByBlogId(blog.getId());
-		  esBlog.update(returnBlog);
-	   }
-	
-	   esBlogService.updateEsBlog(esBlog);
 	   return returnBlog;
 	   }
 
@@ -66,8 +58,6 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public void removeBlog(Long id) {
 		blogRepository.deleteById(id);
-		EsBlog esblog = esBlogService.getEsBlogByBlogId(id);
-		esBlogService.removeEsBlog(esblog.getId());
 	}
 
 	@Transactional
@@ -107,11 +97,6 @@ public class BlogServiceImpl implements BlogService {
 		Blog blog = blogRepository.getOne(id);
 		blog.setReadSize(blog.getReadSize()+1);//阅读量+1
 		blogRepository.save(blog);
-		
-		// 将elasticsearch中的博客阅读量也加+1
-		EsBlog esBlog = esBlogService.getEsBlogByBlogId(blog.getId());
-		esBlog.update(blog);
-		esBlogService.updateEsBlog(esBlog);
 	}
  
 	/**
@@ -217,6 +202,59 @@ public class BlogServiceImpl implements BlogService {
 	public Page<Blog> listBlogsByCatalog(Catalog catalog, Pageable pageable) {
 		Page<Blog> blogs = blogRepository.findByCatalog(catalog, pageable);
 		return blogs;
+	}
+
+	@Override
+	public Page<Blog> listNewestBlogs(String keyword, Pageable pageable) {
+//		return blogRepository.findByTitleLike(keyword, pageable);
+		return blogRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Blog> listHotestBlogs(String keyword, Pageable pageable) {
+		// return blogRepository.findByTitleLike(keyword, pageable);
+		// 模糊查询 最热
+        return blogRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Blog> listBlogs(Pageable pageable) {
+		return blogRepository.findAll(pageable);
+	}
+
+	@Override
+	public List<Blog> listTop5NewestBlogs() {
+		// 模糊查询 最新
+	    Sort sort = new Sort(Direction.DESC,"createTime"); 
+        Pageable pageable = PageRequest.of(0, 5, sort);
+        return blogRepository.findAll(pageable).getContent();
+	}
+
+	@Override
+	public List<Blog> listTop5HotestBlogs() {
+		// 模糊查询 最热
+        Sort sort = new Sort(Direction.DESC,"readSize","commentSize","voteSize","createTime"); 
+        Pageable pageable = PageRequest.of(0, 5, sort);
+        return blogRepository.findAll(pageable).getContent();
+	}
+
+	@Override
+	public List<TagVO> listTop30Tags() {
+		// TODO Auto-generated method stub
+		List<TagVO> tags = new ArrayList<>();
+		TagVO tagVO1 = new TagVO("java",(long) 6);
+		TagVO tagVO2 = new TagVO("blog",(long) 2);
+		TagVO tagVO3 = new TagVO("spring",(long) 4);
+		tags.add(tagVO1);
+		tags.add(tagVO2);
+		tags.add(tagVO3);
+		return tags;
+	}
+
+	@Override
+	public List<User> listTop5Users() {
+		return userService.listUsers();
+		
 	}
 
 }

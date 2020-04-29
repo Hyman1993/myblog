@@ -36,7 +36,6 @@ import com.penghuang.blog.domain.User;
 import com.penghuang.blog.domain.Vote;
 import com.penghuang.blog.service.BlogService;
 import com.penghuang.blog.service.CatalogService;
-import com.penghuang.blog.service.EsBlogService;
 import com.penghuang.blog.service.UserService;
 import com.penghuang.blog.util.ConstraintViolationExceptionHandler;
 import com.penghuang.blog.vo.Response;
@@ -64,9 +63,6 @@ public class UserspaceController  extends BaseController {
 	
 	@Autowired
 	private CatalogService catalogService;
-	
-	@Autowired
-    private EsBlogService esBlogService;
 	
 	@GetMapping("/{username}")
 	public String userSpace(@PathVariable("username") String username, Model model) {

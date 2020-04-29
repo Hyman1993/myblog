@@ -1,11 +1,14 @@
 package com.penghuang.blog.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.penghuang.blog.domain.Blog;
 import com.penghuang.blog.domain.Catalog;
 import com.penghuang.blog.domain.User;
+import com.penghuang.blog.vo.TagVO;
 
 /**
  * Blog 服务接口.
@@ -100,4 +103,52 @@ public interface BlogService {
 	 * @return
 	 */
 	Page<Blog> listBlogsByCatalog(Catalog catalog, Pageable pageable); 
+	
+	/**
+	 * 最新博客列表，分页
+	 * @param keyword
+	 * @param pageable
+	 * @return
+	 */
+	Page<Blog> listNewestBlogs(String keyword, Pageable pageable);
+
+	/**
+	 * 最热博客列表，分页
+	 * @param keyword
+	 * @param pageable
+	 * @return
+	 */
+	Page<Blog> listHotestBlogs(String keyword, Pageable pageable);
+	
+	/**
+	 * 博客列表，分页
+	 * @param pageable
+	 * @return
+	 */
+	Page<Blog> listBlogs(Pageable pageable);
+	/**
+	 * 最新前5
+	 * @param keyword
+	 * @return
+	 */
+	List<Blog> listTop5NewestBlogs();
+	
+	/**
+	 * 最热前5
+	 * @param keyword
+	 * @return
+	 */
+	List<Blog> listTop5HotestBlogs();
+	
+	/**
+	 * 最热前 30 标签
+	 * @return
+	 */
+	List<TagVO> listTop30Tags();
+
+	/**
+	 * 最热前12用户
+	 * @return
+	 */
+	List<User> listTop5Users();
 }

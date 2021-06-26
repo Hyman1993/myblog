@@ -58,7 +58,7 @@ public class BlogController extends BaseController {
             isEmpty = false;
         } catch (Exception e) { // 系统初始化，es内可能为空，检索时有可能出现异常,设定一些参数对象，直接返回页面
             Pageable pageable = PageRequest.of(pageIndex, pageSize);
-            page = esBlogService.listEsBlogs(pageable);
+            page = Page.empty(pageable);
             model.addAttribute("order", order);
             model.addAttribute("keyword", keyword); //keyword即标签
             model.addAttribute("page", page);

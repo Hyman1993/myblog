@@ -55,7 +55,7 @@ dependencies {
 	implementation('es.nitaur.markdown:txtmark:0.16')
 
     // 添加MYSQL连接驱动的依赖
-    implementation('mysql:mysql-connector-java:6.0.5')
+    implementation('mysql:mysql-connector-java:8.0.11')
 
      // 添加H2的依赖
      //  runtime('com.h2database:h2:1.4.193')

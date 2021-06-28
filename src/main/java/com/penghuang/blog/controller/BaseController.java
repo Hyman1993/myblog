@@ -60,10 +60,16 @@ public class BaseController {
 	if ("ja".equalsIgnoreCase(language)) {
 		model.addAttribute("pageInfo", pageInfoConfig.getJapanesePage());
 		model.addAttribute("lang", "ja");
+	} else if("en".equalsIgnoreCase(language)) {
+		// 默认设置成英文环境
+		model.addAttribute("pageInfo", pageInfoConfig.getEnglishPage());
+		model.addAttribute("lang", "en");
 	} else {
 		// 默认设置成中文环境
 		model.addAttribute("pageInfo", pageInfoConfig.getChinesePage());
 		model.addAttribute("lang", "zh");
-	}}
+	}
+	
+	}
 
 }

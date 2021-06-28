@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Scope;
  *
  */
 @Configuration
-@PropertySource(value={"classpath:pageinfo_ja.properties"},name="pageinfo_ja.properties",encoding="UTF-8")
-@ConfigurationProperties(prefix = "japanese")
-public class JapanesePage extends CommonPage {
+@PropertySource(value={"classpath:pageinfo_en.properties"},name="pageinfo_en.properties",encoding="UTF-8")
+@ConfigurationProperties(prefix = "english")
+public class EnglishPage extends CommonPage {
 	
 }

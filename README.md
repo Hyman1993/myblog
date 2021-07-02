@@ -1,5 +1,5 @@
 # myblog
-我的博客(持续改进中)
+This is an open source blog system which is developed by java.
 
 # Home page(Chinese)
 ![Home page](https://github.com/Hyman1993/myblog/blob/dev_aws/images/homepage.PNG)

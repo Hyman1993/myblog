@@ -1,4 +1,4 @@
-# myblog
+# About Myblog
 This is an open source blog system which is developed by java.
 
 # How to Run

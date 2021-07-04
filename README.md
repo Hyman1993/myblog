@@ -1,6 +1,12 @@
 # myblog
 This is an open source blog system which is developed by java.
 
+# How to Run
+Run this app with below command.
+> gradle clean
+> gradle build
+> gradle bootRun
+
 # Home page(Chinese)
 ![Home page](https://github.com/Hyman1993/myblog/blob/dev_aws/images/homepage.PNG)
 

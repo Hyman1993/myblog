@@ -10,7 +10,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'gradle build'
+                echo 'Building successfully..'
             }
         }
         stage('Test') {
